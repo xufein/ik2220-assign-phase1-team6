@@ -1,0 +1,108 @@
+===Case 1. h1 ping h3===
+PING 100.0.0.51 (100.0.0.51) 56(84) bytes of data.
+From 100.0.0.11 icmp_seq=1 Destination Host Unreachable
+
+--- 100.0.0.51 ping statistics ---
+1 packets transmitted, 0 received, +1 errors, 100% packet loss, time 0ms
+
+
+
+===Case 2. h3 ping h1===
+PING 100.0.0.11 (100.0.0.11) 56(84) bytes of data.
+From 100.0.0.51 icmp_seq=1 Destination Host Unreachable
+
+--- 100.0.0.11 ping statistics ---
+1 packets transmitted, 0 received, +1 errors, 100% packet loss, time 0ms
+
+
+
+===Case 3. h1 ping ds1===
+PING 100.0.0.20 (100.0.0.20) 56(84) bytes of data.
+
+--- 100.0.0.20 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+
+===Case 4. h3 ping ds1===
+PING 100.0.0.20 (100.0.0.20) 56(84) bytes of data.
+
+--- 100.0.0.20 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+
+
+===Case 5. h3 curl ws1===
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"><html>
+<title>Directory listing for /</title>
+<body>
+<h2>Directory listing for /</h2>
+<hr>
+<ul>
+<li><a href="dns.py">dns.py</a>
+<li><a href="Makefile">Makefile</a>
+<li><a href="phase_1.py">phase_1.py</a>
+</ul>
+<hr>
+</body>
+</html>
+
+
+===Case 6. h1 curl ws1===
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"><html>
+<title>Directory listing for /</title>
+<body>
+<h2>Directory listing for /</h2>
+<hr>
+<ul>
+<li><a href="dns.py">dns.py</a>
+<li><a href="Makefile">Makefile</a>
+<li><a href="phase_1.py">phase_1.py</a>
+</ul>
+<hr>
+</body>
+</html>
+
+
+===Case 7. h3 dig ds1===
+;; Warning: query response not set
+
+; <<>> DiG 9.10.3-P4-Ubuntu <<>> @100.0.0.20 server1.com
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28379
+;; flags:; QUERY: 0, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: Message has 27 extra bytes at end
+
+;; ANSWER SECTION:
+server1.com.		0	IN	A	100.0.0.40
+
+;; Query time: 118 msec
+;; SERVER: 100.0.0.20#53(100.0.0.20)
+;; WHEN: Sat Apr 22 08:30:43 PDT 2017
+;; MSG SIZE  rcvd: 66
+
+
+
+===Case 8. h1 dig ds1===
+;; Warning: query response not set
+
+; <<>> DiG 9.10.3-P4-Ubuntu <<>> @100.0.0.20 server1.com
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28616
+;; flags:; QUERY: 0, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: Message has 27 extra bytes at end
+
+;; ANSWER SECTION:
+server1.com.		0	IN	A	100.0.0.40
+
+;; Query time: 104 msec
+;; SERVER: 100.0.0.20#53(100.0.0.20)
+;; WHEN: Sat Apr 22 08:30:43 PDT 2017
+;; MSG SIZE  rcvd: 66
+
+
+
